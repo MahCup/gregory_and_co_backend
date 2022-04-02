@@ -5,22 +5,26 @@ const user = (sequelize, DataTypes) => {
             primaryKey: true
         },
         nome_completo: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false
         },
         genero: {
             type: DataTypes.STRING
         },
         email: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false
         },
         senha: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false
         },
         telefone: {
             type: DataTypes.INTEGER
         },
         celular: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     }, {
         timestamps: false,

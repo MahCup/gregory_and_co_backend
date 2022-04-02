@@ -26,9 +26,9 @@ router.post("/", async(req, res) => {
         publico = req.query.publico,
         tipo_de_fechamento = req.query.tipo_de_fechamento,
         amortecedor = req.query.amortecedor,
-        marca_id = req.query.marca_id;
+        brand_id = req.query.brand_id;
 
-        await productService.add({nome, preco, numeracao, cor, palmilha_anti_odor, material, publico, tipo_de_fechamento, amortecedor, marca_id});
+        await productService.add({nome, preco, numeracao, cor, palmilha_anti_odor, material, publico, tipo_de_fechamento, amortecedor, brand_id});
         res.status(201).send('Produto adicionado com sucesso!')
     } catch (err) {
         res.status(400).send('Não foi possível adicionar o produto.')

@@ -17,9 +17,9 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const quantidade = req.query.quantidade,
-        product_id = req.query.product_id;
+        produto_id = req.query.produto_id;
 
-        await inventoryService.add({ quantidade, product_id });
+        await inventoryService.add({ quantidade, produto_id });
         res.status(201).send('Estoque adicionado com sucesso!')
     } catch (err) {
         res.status(400).send('Não foi possível adicionar o estoque.')
