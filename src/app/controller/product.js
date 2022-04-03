@@ -5,12 +5,21 @@ const ProductService = require('../services/product')
 
 const productService = new ProductService(product);
 
-router.get("/", async(req, res) => {
+router.get("/list", async(req, res) => {
     try {
         const products = await productService.get();
         res.json(products);
     } catch (err) {
         res.status(400).send('Não foi possível recuperar os produtos.')
+    }
+});
+
+router.get("/", async(req, res) => {
+    try {
+        const product = await productService.getById(req.query);
+        res.json(product);
+    } catch (err) {
+        res.status(400).send('Não foi possível recuperar o produto pelo id especificado.')
     }
 });
 
@@ -38,7 +47,6 @@ router.post("/", async(req, res) => {
 router.delete("/", async(req, res) => {
     try {
         const product = req.query;
-        console.log(req.query)
         await productService.del(product);
         res.status(200).send('Produto excluído com sucesso!')
     } catch (err) {
