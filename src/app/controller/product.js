@@ -26,16 +26,18 @@ router.get("/", async(req, res) => {
 // tratamento de requisições e respostas
 router.post("/", async(req, res) => {
     try {
-        const nome = req.query.nome,
-        preco = req.query.preco,
-        numeracao = req.query.numeracao,
-        cor = req.query.cor,
-        palmilha_anti_odor= req.query.palmilha_anti_odor,
-        material = req.query.material,
-        publico = req.query.publico,
-        tipo_de_fechamento = req.query.tipo_de_fechamento,
-        amortecedor = req.query.amortecedor,
-        brand_id = req.query.brand_id;
+
+        console.log(req.body)
+        const nome = req.body.nome,
+        preco = req.body.preco,
+        numeracao = req.body.numeracao,
+        cor = req.body.cor,
+        palmilha_anti_odor= req.body.palmilha_anti_odor,
+        material = req.body.material,
+        publico = req.body.publico,
+        tipo_de_fechamento = req.body.tipo_de_fechamento,
+        amortecedor = req.body.amortecedor,
+        brand_id = req.body.brand_id;
 
         await productService.add({nome, preco, numeracao, cor, palmilha_anti_odor, material, publico, tipo_de_fechamento, amortecedor, brand_id});
         res.status(201).send('Produto adicionado com sucesso!')
@@ -46,7 +48,8 @@ router.post("/", async(req, res) => {
 
 router.delete("/", async(req, res) => {
     try {
-        const product = req.query;
+        console.log(req.body)
+        const product = req.body;
         await productService.del(product);
         res.status(200).send('Produto excluído com sucesso!')
     } catch (err) {

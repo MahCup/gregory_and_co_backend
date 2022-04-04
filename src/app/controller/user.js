@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
             senha = req.body.senha,
             telefone = req.body.telefone,
             celular = req.body.celular;
-
+            
         await userService.add({ cpf, nome_completo, genero, email, senha, telefone, celular });
         res.status(201).send('Usuário adicionado com sucesso!')
     } catch (err) {

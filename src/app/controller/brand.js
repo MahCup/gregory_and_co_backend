@@ -5,7 +5,7 @@ const BrandService = require('../services/brand')
 
 const brandService = new BrandService(brand);
 
-router.get("/", async(req, res) => {
+router.get("/list", async(req, res) => {
     try {
         const brands = await brandService.get();
         res.json(brands);
@@ -16,7 +16,17 @@ router.get("/", async(req, res) => {
 
 router.post("/", async(req, res) => {
     try {
-        const nome = req.query;
+        const brand = await brandService.getById(req.body);
+        res.json(brand);
+    } catch (err) {
+        res.status(400).send('Não foi possível recuperar a marca pelo id especificado.')
+    }
+});
+
+router.post("/", async(req, res) => {
+    try {
+        console.log(req.body);
+        const nome = req.body;
         await brandService.add(nome);
         res.status(201).send('Marca adicionada com sucesso!')
     } catch (err) {
@@ -26,8 +36,9 @@ router.post("/", async(req, res) => {
 
 router.delete("/", async(req, res) => {
     try {
-        const nome = req.query;
-        console.log(req.query)
+        console.log(req.body);
+        const nome = req.body;
+
         await brandService.del(nome);
         res.status(200).send('Marca excluída com sucesso!')
     } catch (err) {

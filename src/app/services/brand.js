@@ -13,6 +13,16 @@ class BrandService {
         }
     }
 
+    async getById(BrandData) {
+        try {
+            const brand = await this.brand.findOne({ where: { id: BrandData.id } });
+            return brand;
+        } catch (erro) {
+            console.error(erro.message);
+            throw erro;
+        }
+    }
+
     async add(BrandData) {
         try {
             await this.brand.create(BrandData);

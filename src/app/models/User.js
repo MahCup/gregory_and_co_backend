@@ -1,7 +1,7 @@
 const user = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
         cpf: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             primaryKey: true
         },
         nome_completo: {
@@ -20,10 +20,10 @@ const user = (sequelize, DataTypes) => {
             allowNull: false
         },
         telefone: {
-            type: DataTypes.INTEGER
+            type: DataTypes.STRING
         },
         celular: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         }
     }, {
