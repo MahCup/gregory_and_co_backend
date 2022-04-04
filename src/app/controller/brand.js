@@ -23,7 +23,7 @@ router.post("/", async(req, res) => {
     }
 });
 
-router.post("/", async(req, res) => {
+router.post("/add", async(req, res) => {
     try {
         console.log(req.body);
         const nome = req.body;
