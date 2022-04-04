@@ -13,6 +13,19 @@ class ProductService {
         }
     }
 
+    async getPaginated(page) {
+        try {
+            const products = await this.product.findAll({
+                limit: 4,
+                offset: page
+            });
+            return products;
+        } catch (erro) {
+            console.error(erro.message);
+            throw erro;
+        }
+    }
+
     async getById(ProductData) {
         try {
             const product = await this.product.findOne({ where: { id: ProductData.id } });

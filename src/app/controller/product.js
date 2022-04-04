@@ -14,7 +14,17 @@ router.get("/list", async(req, res) => {
     }
 });
 
-router.get("/", async(req, res) => {
+router.post("/page", async(req, res) => {
+    try {
+        const page = req.body.page;
+        const products = await productService.getPaginated(page);
+        res.json(products);
+    } catch (err) {
+        res.status(400).send('Não foi possível recuperar os produtos.')
+    }
+});
+
+router.post("/", async(req, res) => {
     try {
         const product = await productService.getById(req.query);
         res.json(product);
