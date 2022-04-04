@@ -1,4 +1,5 @@
 const express = require("express");
+var cors = require('cors')
 const routers = require('./app/controller');
 const { sequelize } = require('./app/models');
 
@@ -8,13 +9,15 @@ const app = express();
 // tratar requisições que vem com formato json
 app.use(express.json());
 
-// avoid problem wirh CORS policy
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-})
+app.use(cors());
+
+// // avoid problem wirh CORS policy
+// app.use(function(req, res, next) {
+//     res.header('Access-Control-Allow-Origin', "*");
+//     res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     next();
+// })
 
 app.use('/', routers);
 
